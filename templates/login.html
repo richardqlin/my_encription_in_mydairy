@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+YOUR WEB PAGE TITLE GOES HERE
+
+{% endblock %}
+
+<head>
+    <style>
+    .form{
+width: 50%;
+  padding: 16px 20px;
+  border: solid;
+  border-radius: 4px;
+  margin: 100px;
+
+}
+
+</style>
+</head>
+
+
+
+{% block content %}
+
+    <div class="jumbotron text-center" style ="background-color: black">
+
+        <div class="container">
+
+ <div class = "text-left">
+    <h2>User Login</h2>
+
+     <strong>
+         No Account?
+     <a href = '/'>Click here</a>
+</strong>
+</div>
+    </div>
+    </div>
+
+  <div class ="container text-center">
+            {% for message in get_flashed_messages() %}
+            <p> {{ message }} </p>
+            {% endfor %}
+        </div>
+
+<form class="text-center" method="POST" action="" >
+<div class ="form-group" >
+
+
+   <p> <input class="form-control"  type="email" name="email"  placeholder="Email"></p>
+   <p> <input class="form-control" type="password" name="password" placeholder="Password"></p>
+
+   <p> <button type = "submit" >Login</button></p>
+
+</div>
+</form>
+
+    <div class="jumbotron text-center" style ="background-color: black">
+
+
+
+ <div class = "container text-right">
+    <strong>The Login System</strong>
+
+
+</div>
+    </div>
+
+{% endblock %}
+
+</html>

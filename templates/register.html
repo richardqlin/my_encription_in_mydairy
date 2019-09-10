@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+YOUR WEB PAGE TITLE GOES HERE
+
+{% endblock %}
+
+<head>
+    <style>
+    .form{
+width: 50%;
+  padding: 16px 20px;
+  border: solid;
+  border-radius: 4px;
+  margin: 100px;
+
+}
+
+</style>
+</head>
+
+
+
+{% block content %}
+
+    <div class="jumbotron text-center" style ="background-color: black">
+
+        <div class="container">
+
+ <div class = "text-left">
+    <h2>User Registration</h2>
+
+     <strong>
+         Already have an account?
+     <a href = '/login'>Click here</a>
+</strong>
+</div>
+    </div>
+    </div>
+
+
+<form class="text-center" method="POST" action="/" >
+<div class ="form-group" >
+
+   <p> <input class="form-control"  type="text"   name="firstname"  placeholder="First Name"></p>
+   <p> <input class="form-control" type="text" name="lastname" placeholder="Last Name"></p>
+   <p> <input class="form-control"  type="email" name="email"  placeholder="Email"></p>
+   <p> <input class="form-control" type="password" name="password" placeholder="Password"></p>
+
+   <p> <button type = "submit" >Register</button></p>
+
+</div>
+</form>
+
+    <div class="jumbotron text-center" style ="background-color: black">
+
+
+
+ <div class = "container text-right">
+    <strong>The Login System</strong>
+
+  </div>
+
+
+    </div>
+{% endblock %}
+
+</html>
