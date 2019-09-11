@@ -21,50 +21,63 @@ width: 50%;
 </style>
 </head>
 
+{% block scripts %}
+{{ super() }}
+
+{{ moment.include_moment() }}
+
+{% endblock %}
 
 
 {% block content %}
 
-    <div class="jumbotron text-center" style ="background-color: black">
+    <div class="jumbotron text-center" style = "background-image: linear-gradient(skyblue, white)">
 
+
+     <div class="container text-left">
+         <div class ="row"  >
+         <div class="col-md-12" style="font-size: 30px">Welcome {{ session['user-info']['firstname']}} </div>
+       <div class="col-md-6 text-right">
+
+<p>Login time: {{ moment(session['user-info']['loginTime']).format('h.mm A') }} </p>
+
+
+        </div>
+         </div>
+     </div>
         <div class="container">
-
- <div class = "text-left">
-    <h2>Welcome {{ session['user-info']['firstname']}}</h2>
-
-     <strong>
-     <a href = '/logout'>Logout</a>
+     <strong style="color: purple"> {{session['user-info']['lastname']|capitalize }}'s Diary</strong>
+        </div>
+        <div class="container text-right">
+        <strong>
+   <button> <a href = '/logout'>Not {{session['user-info']['email']}} ?</a> </button>
 </strong>
-</div>
+
     </div>
-    </div>
-
-  <div class ="container text-center">
-            {% for message in get_flashed_messages() %}
-            <p> {{ message }} </p>
-            {% endfor %}
-
-
-
-
-
-
-
-   <p>First Name: {{session['user-info']['firstname']}} </p>
-   <p>Last Name: {{session['user-info']['lastname']}} </p>
-     <p>Email: {{session['user-info']['email']}} </p>
-
-
 </div>
 
+        <div class="container" >
+   <form method="post">
+       <textarea name ="content" row="3" class="form-control" style="resize: none;margin-bottom: 1em;"></textarea>
+       <input type="submit" value ="Save" class="btn btn-success" style="margin-bottom: 1em;">
 
-    <div class="jumbotron text-center" style ="background-color: black">
+   </form>
+</div>
 
+ <div class="container" >
+{% for e in entry |reverse %}
+     <strong >{{ moment(e['time']).fromNow() }} </strong>
+    <p>
+<strong >  {{ moment(e['time']).format('LLL') }} </strong></p>
+     <p>{{ e['content'] }} </p>
 
+{% endfor %}
+ </div>
+
+    <div class="jumbotron text-center" style ="background-image: linear-gradient(skyblue, white)">
 
  <div class = "container text-right">
-    <strong>The Login System</strong>
-
+    <strong>My Digital Diary</strong>
 
 </div>
     </div>
