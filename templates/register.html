@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 YOUR WEB PAGE TITLE GOES HERE
 
 {% endblock %}
 
-<head>
-    <style>
-    .form{
-width: 50%;
-  padding: 16px 20px;
-  border: solid;
-  border-radius: 4px;
-  margin: 100px;
-
-}
-
-</style>
-</head>
 
 
 
@@ -40,7 +27,7 @@ width: 50%;
     </div>
     </div>
 
-
+<div id="content">
 <form class="text-center" method="POST" action="/" >
 <div class ="form-group" >
 
@@ -53,6 +40,14 @@ width: 50%;
 
 </div>
 </form>
+      <div class ="container text-center">
+            {% for message in get_flashed_messages() %}
+            <p> {{ message }} </p>
+            {% endfor %}
+        </div>
+</div>
+
+
 
     <div class="jumbotron text-center" style ="background-image: linear-gradient(to right,teal, green)">
 

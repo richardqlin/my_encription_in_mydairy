@@ -7,19 +7,6 @@ YOUR WEB PAGE TITLE GOES HERE
 
 {% endblock %}
 
-<head>
-    <style>
-    .form{
-width: 50%;
-  padding: 16px 20px;
-  border: solid;
-  border-radius: 4px;
-  margin: 100px;
-
-}
-
-</style>
-</head>
 
 {% block scripts %}
 {{ super() }}
@@ -56,7 +43,10 @@ width: 50%;
     </div>
 </div>
 
+
+
         <div class="container" >
+
    <form method="post">
        <textarea name ="content" row="3" class="form-control" style="resize: none;margin-bottom: 1em;"></textarea>
        <input type="submit" value ="Save" class="btn btn-success" style="margin-bottom: 1em;">
@@ -64,8 +54,9 @@ width: 50%;
    </form>
 </div>
 
+
  <div class="container" >
-{% for e in entry |reverse %}
+{% for e in entry | reverse %}
      <strong >{{ moment(e['time']).fromNow() }} </strong>
     <p>
 <strong >  {{ moment(e['time']).format('LLL') }} </strong></p>
