@@ -10,6 +10,8 @@ from datetime import datetime
 
 from passlib.hash import sha256_crypt
 
+# passlib.hash for encryption 
+
 app= Flask('the-login-system')
 
 app.config['SECRET_KEY']='ThE_lOgIn_sYsTeM'
@@ -27,15 +29,13 @@ def register():
         return render_template('register.html')
     elif request.method == 'POST':
         doc = {}
-        '''for item in request.form:
-            doc[item] = request.form[item]
-        '''
+
         doc = {'email': request.form['email']}
         found = mongo.db.users.find_one(doc)
         if found is None:
             doc['firstname']=request.form['firstname']
             doc['lastname'] = request.form['lastname']
-            doc['password'] = sha256_crypt.encrypt(request.form['password'])
+            doc['password'] = sha256_crypt.encrypt(request.form['password']) # encrpted password
             mongo.db.users.insert_one(doc)
             flash('Account created successfully!')
             return redirect('/login')
@@ -59,7 +59,7 @@ def login():
         else:
             try:
 
-                if sha256_crypt.verify(request.form['password'], found['password']):
+                if sha256_crypt.verify(request.form['password'], found['password']): # decritped password from mongodb
                     session['user-info'] = {'firstname': found['firstname'], 'lastname': found['lastname'],'email': found['email'], 'loginTime': datetime.utcnow()}
                     return redirect('/home')
                 else:
